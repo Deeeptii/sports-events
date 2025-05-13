@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "fb74a143-58ca-4e55-9361-67074539db10",
+		"name": "sports-events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38390828"
+	},
+	"item": [
+		{
+			"name": "delete event",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/events/4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"events",
+						"4"
+					]
+				},
+				"description": "Generated from cURL: curl -X DELETE http://127.0.0.1:5000/api/events/1\n"
+			},
+			"response": []
+		},
+		{
+			"name": "get all events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/events",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"events"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://127.0.0.1:5000/api/events\n"
+			},
+			"response": []
+		},
+		{
+			"name": "get event by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/events/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"events",
+						"5"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://127.0.0.1:5000/api/events/1\n"
+			},
+			"response": []
+		},
+		{
+			"name": "update event",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n           \"name\": \"Updated Event Name\",\n           \"description\": \"Updated description\",\n           \"date\": \"2025-06-15T14:00:00\"\n         }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/events/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"events",
+						"3"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT http://127.0.0.1:5000/api/events/1 \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n           \"name\": \"Updated Event Name\",\n           \"description\": \"Updated description\",\n           \"date\": \"2025-06-15T14:00:00\"\n         }'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "create event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"category\": \"cricket\",\n        \"created_at\": \"Tue, 13 May 2025 12:32:44 GMT\",\n        \"date\": \"Fri, 20 Jun 2025 10:00:00 GMT\",\n        \"description\": \"Description of the new event\",\n        \"id\": 1,\n        \"name\": \"New Event\",\n        \"venue\": \"cricket-ground-whitefield\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/events",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"events"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://127.0.0.1:5000/api/events \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n           \"name\": \"New Event\",\n           \"description\": \"Description of the new event\",\n           \"date\": \"2025-06-20T10:00:00\"\n         }'\n"
+			},
+			"response": []
+		}
+	]
+}
