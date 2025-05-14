@@ -1,31 +1,36 @@
-from flask import Flask, jsonify, request
+import os
+
 import psycopg2
-from psycopg2 import OperationalError
 import psycopg2.extras
-import service.eventService  as Events
+from flask import jsonify, request
+from psycopg2 import OperationalError
+
 
 def get_db_connection():
     try:
+        pg_user = os.getenv("POSTGRES_USER", "genai_super")
+        pg_pass = os.getenv("POSTGRES_PASSWORD", "mypassword")
+        pg_db = os.getenv("POSTGRES_DB", "mydb")
+        pg_host = os.getenv("POSTGRES_HOST", "0.0.0.0")
+        pg_port = os.getenv("POSTGRES_PORT", "5432")
+
         connection = psycopg2.connect(
-            host='db.qvypqycqhkdgeqfcuicl.supabase.co',
-            port=5432,
-            database='postgres',
-            user='postgres',
-            password='zxcDSA1@'  # Update if your actual password differs
+            host=pg_host, port=pg_port, database=pg_db, user=pg_user, password=pg_pass
         )
         return connection
     except OperationalError as e:
         print(f"Error: {e}")
         return None
 
+
 def add_event(event_data):
     # Extract event data from the request JSON body
-    name = event_data.get('name')
-    description = event_data.get('description')
-    date = event_data.get('date')
-    category = event_data.get('category')
-    created_at = event_data.get('created_at')
-    venue = event_data.get('venue')
+    name = event_data.get("name")
+    description = event_data.get("description")
+    date = event_data.get("date")
+    category = event_data.get("category")
+    created_at = event_data.get("created_at")
+    venue = event_data.get("venue")
 
     # Check if required fields are present
     if not name or not date:
@@ -55,7 +60,7 @@ def add_event(event_data):
 
         return jsonify({"message": "Event added successfully!", "id": event_id}), 201
 
-    except Error as e:
+    except psycopg2.Error as e:
         cursor.close()
         connection.close()
         return jsonify({"error": f"Error occurred while inserting event: {e}"}), 500
@@ -84,9 +89,10 @@ def get_events():
         if connection:
             connection.close()
         return jsonify({"error": f"Error occurred while fetching events: {e}"}), 500
-        
+
 
 # Get a specific event by ID
+
 
 def get_event(event_id):
     connection = get_db_connection()
@@ -112,13 +118,15 @@ def get_event(event_id):
             connection.close()
         return jsonify({"error": f"Error occurred while fetching event: {e}"}), 500
 
+
 # Update an event
+
 
 def update_event(event_id):
     event_data = request.get_json()
-    name = event_data.get('name')
-    description = event_data.get('description')
-    date = event_data.get('date')
+    name = event_data.get("name")
+    description = event_data.get("description")
+    date = event_data.get("date")
 
     if not name or not date:
         return jsonify({"error": "Name and date are required for updating!"}), 400
